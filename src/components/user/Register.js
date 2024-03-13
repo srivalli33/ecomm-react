@@ -24,7 +24,7 @@ export default function Register() {
         <div className="Register-msg">{msg}</div>
         <div className="Rigister-header">
           <div className="Register-signup-title">Sign Up</div>
-          <div onClick={() => setUser(() => null)} className="close">
+          <div onClick={() => setFlag(() => 0)} className="close">
             &times;
           </div>
         </div>
