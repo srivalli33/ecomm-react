@@ -1,7 +1,6 @@
 import React from "react";
 import cartEmpty from "../../img/cart-empty.jpg";
 import { AppContext } from "../../context/appContext.js";
-import { UserContext } from "../../App.js";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,9 +9,8 @@ import "./Cart.css";
 import { Navigate } from "react-router-dom";
 export default function Cart() {
   const navigate = useNavigate();
-  const { cartItems, setCartItems, products, orders, setOrders } =
+  const { cartItems, setCartItems, products, orders, setOrders,user } =
     useContext(AppContext);
-  const { user } = useContext(UserContext);
   const [order, setOrder] = useState({});
   const [orderValue, setOrderValue] = useState(0);
 

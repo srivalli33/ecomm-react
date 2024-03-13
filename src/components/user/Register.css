@@ -44,3 +44,10 @@
 .Register-text-box{
   margin-top: 20px;
 }
+
+.Register-msg{
+  font-size: 20px;
+  font-weight: bold;
+  color:red;
+  padding:5px
+}
