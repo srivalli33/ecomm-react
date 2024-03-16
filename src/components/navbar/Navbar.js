@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { AppContext } from "../../context/appContext";
 export default function Navbar() {
-  const { cartItems, orders, user, setUser, setFlag } = useContext(AppContext);
+  const { cartItems, orders, user, setUser, flag, setFlag } =
+    useContext(AppContext);
   const PATH = process.env.REACT_APP_PATH;
   const values = Object.values(cartItems);
-  const total = values.length;
+  let total = values.filter((elem) => elem > 0);
+  total = total.length;
   const myOrders = orders.filter((elem) => elem.email === user.email);
   const handleLogout = () => {
     setUser((prev) => ({ ...prev, ...{ name: "", email: "", pass: "" } }));
@@ -17,15 +19,21 @@ export default function Navbar() {
     <div className="navbar">
       <div className="title">Irish Cafe</div>
       <div>
-        <h3>Hi {user.name}!</h3>
+        <h3>{user.name}</h3>
       </div>
       <div className="links">
         <Link to={`${PATH}/`}> Products </Link>
-        <Link to={`${PATH}/order`}> Orders({myOrders.length}) </Link>
-        <Link to={`${PATH}/cart`}> Cart({total}) </Link>
-        <Link to={`${PATH}/`} onClick={handleLogout}>
-          Logout
-        </Link>
+        {myOrders.length > 0 && (
+          <Link to={`${PATH}/order`}> Orders({myOrders.length}) </Link>
+        )}
+        {total > 0 && <Link to={`${PATH}/cart`}> Cart({total}) </Link>}
+        {flag < 2 ? (
+          <Link to={`${PATH}/login`}>Login</Link>
+        ) : (
+          <Link to={`${PATH}/`} onClick={handleLogout}>
+            Logout
+          </Link>
+        )}
       </div>
     </div>
   );
