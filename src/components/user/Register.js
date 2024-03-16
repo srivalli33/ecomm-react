@@ -17,6 +17,7 @@ const PATH = process.env.REACT_APP_PATH
       setMsg(() => "Fields cannot be blank");
     } else {
       setUsers((prev) => [...prev, user]);
+      setFlag(()=>2)
       Navigate(`${PATH}/`)
     }
   };

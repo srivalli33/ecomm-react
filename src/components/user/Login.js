@@ -6,12 +6,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Login.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
   const { user, setUser, users, setUsers, flag, setFlag } =
     useContext(AppContext);
   const [visible, setvisible] = useState(false);
   const [msg, setMsg] = useState();
   const PATH = process.env.REACT_APP_PATH;
+  const Navigate = useNavigate()
   const validateUser = () => {
     const found = users.find(
       (elem) => elem.email === user.email && elem.pass === user.pass
@@ -19,6 +21,8 @@ export default function Login() {
     if (found) {
       setUser((prev) => ({ ...prev, name: found.name }));
       setFlag(() => 2);
+      Navigate(`${PATH}/cart`)
+
     } else setMsg(() => "Invalid email or password");
   };
   return (
